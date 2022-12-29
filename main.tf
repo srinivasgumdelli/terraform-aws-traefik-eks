@@ -130,7 +130,7 @@ resource "helm_release" "this" {
   namespace        = var.namespace
   create_namespace = true
 
-  repository = "https://helm.traefik.io/traefik"
+  repository = "https://traefik.github.io/charts"
   chart      = "traefik"
 
   # We are using an ALB so we don't need to create a service of type LoadBalancer
