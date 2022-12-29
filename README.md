@@ -29,10 +29,10 @@ module "traefik" {
   outbound_cidrs = ["0.0.0.0/0"]
   public_subnet_ids         = ["subnet-1234567890", "subnet-0987654321", "subnet-1234567890"]
   security_group_name       = "traefik-alb-sg"
-  subject_alternative_names = [\"*.example.com\"]
+  subject_alternative_names = ["*.example.com"]
   values                    = templatefile("${path.module}/values.yaml", {})
   vpc_id                    = "VPC_ID"
-  zone_id                   = "ZONE_ID
+  zone_id                   = "ZONE_ID"
 }
 ```
 
