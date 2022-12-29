@@ -1,7 +1,7 @@
 # terraform-aws-traefik-eks
 
 <p align="center">
-  <img width="460" height="300" src="./terraform-aws-traefik-eks-logo.png">
+  <img width="460" height="300" src="https://raw.githubusercontent.com/sculley/terraform-aws-traefik-eks/main/terraform-aws-traefik-eks-logo.png">
 </p>
 
 Terraform module to deploy Traefik into an Amazon AWS EKS Kubernetes cluster using an Application Load Balancer (using aws-load-balancer-controllor) and Certificates from AWS Certificate Manager.
