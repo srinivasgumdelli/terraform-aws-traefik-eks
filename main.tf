@@ -132,6 +132,7 @@ resource "helm_release" "this" {
 
   repository = "https://traefik.github.io/charts"
   chart      = "traefik"
+  version    = "20.7.0"
 
   # We are using an ALB so we don't need to create a service of type LoadBalancer
   set {
