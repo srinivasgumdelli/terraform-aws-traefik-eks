@@ -126,13 +126,13 @@ module "alb" {
 # Traefik Helm Chart, deploys the Traefik ingress controller using the provided helm values
 # default namespace is traefik but this can be changed.
 resource "helm_release" "this" {
-  name             = var.chart_name == "" ? "traefik" : var.chart_name
+  name             = var.release_name == "" ? "traefik" : var.release_name
   namespace        = var.namespace
   create_namespace = true
 
   repository = "https://traefik.github.io/charts"
   chart      = "traefik"
-  version    = "20.7.0"
+  version    = var.chart_version
 
   # We are using an ALB so we don't need to create a service of type LoadBalancer
   set {

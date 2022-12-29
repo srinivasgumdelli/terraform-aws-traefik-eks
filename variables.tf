@@ -16,10 +16,10 @@ variable "backend_port" {
   default = 80
 }
 
-variable "chart_name" {
-  description = "(Optional) Name of the Traefik Helm chart. If omitted, the default name will be used. Default: `traefik`"
+variable "chart_version" {
+  description = "(Optional) Version of the Traefik Helm chart. If omitted, the default version will be used. Default: `20.8.0`"
   type = string
-  default = "traefik"
+  default = "20.8.0"
 }
 
 variable "deregistration_delay" {
@@ -65,6 +65,12 @@ variable "outbound_cidrs" {
 variable "public_subnet_ids" {
   description = "List of public subnet IDs to creaate the Traefik ALB in."
   type = list(string)
+}
+
+variable "release_name" {
+  description = "(Optional) Name of the Traefik Helm chart. If omitted, the default name will be used. Default: `traefik`"
+  type = string
+  default = "traefik"
 }
 
 variable "security_group_name" {

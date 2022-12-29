@@ -16,18 +16,19 @@ If you want to add additional configuration for Traefik using the Helm chart val
 module "traefik" {
   source = "github.com/sculley/terraform-aws-traefik-eks"
 
-  alb_name             = "traefik-alb"
-  alb_name_prefix      = "traef-"
-  backend_port         = 80
-  chart_name           = "traefik"
-  deregistration_delay = 60
-  fqdn                 = "traefik.example.com"
-  http_port            = 80
-  https_port           = 443
-  inbound_cidrs        = ["8.8.8.8/32"]
-  namespace            = "traefik"
-  outbound_cidrs = ["0.0.0.0/0"]
+  alb_name                  = "traefik-alb"
+  alb_name_prefix           = "traef-"
+  backend_port              = 80
+  chart_version             = "20.8.0"
+  deregistration_delay      = 60
+  fqdn                      = "traefik.example.com"
+  http_port                 = 80
+  https_port                = 443
+  inbound_cidrs             = ["8.8.8.8/32"]
+  namespace                 = "traefik"
+  outbound_cidrs            = ["0.0.0.0/0"]
   public_subnet_ids         = ["subnet-1234567890", "subnet-0987654321", "subnet-1234567890"]
+  release_name              = "traefik"
   security_group_name       = "traefik-alb-sg"
   subject_alternative_names = ["*.example.com"]
   values                    = templatefile("${path.module}/values.yaml", {})
@@ -75,8 +76,8 @@ The AWS Load Balancer Controller manages AWS Elastic Load Balancers for a Kubern
 |------|-------------|------|---------|:--------:|
 | <a name="input_alb_name"></a> [alb\_name](#input\_alb\_name) | (Optional) Name of the ALB. If omitted, the default name will be used. Default: `traefik-alb` | `string` | `"traefik-alb"` | no |
 | <a name="input_alb_name_prefix"></a> [alb\_name\_prefix](#input\_alb\_name\_prefix) | (Optional) Name prefix of the ALB. If omitted, the default name prefix will be used. Default: `traef-` | `string` | `"traef-"` | no |
-| <a name="input_backend_port"></a> [backend\_port](#input\_backend\_port) | (Optional) The port on which the Traefik service is listening. Default: `80` | `number` | `80` | yes |
-| <a name="input_chart_name"></a> [chart\_name](#input\_chart\_name) | (Optional) Name of the Traefik Helm chart. If omitted, the default name will be used. Default: `traefik` | `string` | `"traefik"` | no |
+| <a name="input_backend_port"></a> [backend\_port](#input\_backend\_port) | (Optional) The port on which the Traefik service is listening. Default: `80` | `number` | `80` | no |
+| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | (Optional) Version of the Traefik Helm chart. If omitted, the default version will be used. Default: `20.8.0` | `string` | `"20.8.0"` | no |
 | <a name="input_deregistration_delay"></a> [deregistration\_delay](#input\_deregistration\_delay) | (Optional) The amount time for ALB TargetGroup to wait before changing the state of a deregistering target from draining to unused. Default: `60` | `number` | `60` | no |
 | <a name="input_fqdn"></a> [fqdn](#input\_fqdn) | The fully qualified domain name to create the certificate for Traefik and Route53 record | `string` | n/a | yes |
 | <a name="input_http_port"></a> [http\_port](#input\_http\_port) | (Optional) The port on which the Traefik service is listening. Default: `80` | `number` | `80` | no |
@@ -85,6 +86,7 @@ The AWS Load Balancer Controller manages AWS Elastic Load Balancers for a Kubern
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | (Optional) Namespace in an Amazon EKS cluster to deploy Traefik to. Default: `traefik` | `string` | `"traefik"` | no |
 | <a name="input_outbound_cidrs"></a> [outbound\_cidrs](#input\_outbound\_cidrs) | (Optional) List of CIDR blocks to allow outbound traffic to. Default: `[0.0.0.0/0]` | `list(string)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
 | <a name="input_public_subnet_ids"></a> [public\_subnet\_ids](#input\_public\_subnet\_ids) | List of public subnet IDs to creaate the Traefik ALB in. | `list(string)` | n/a | yes |
+| <a name="input_release_name"></a> [release\_name](#input\_release\_name) | (Optional) Name of the Traefik Helm chart. If omitted, the default name will be used. Default: `traefik` | `string` | `"traefik"` | no |
 | <a name="input_security_group_name"></a> [security\_group\_name](#input\_security\_group\_name) | (Optional) Name of the security group. If omitted, the default name will be used. Default: `traefik-alb-sg` | `string` | `"traefik-alb-sg"` | no |
 | <a name="input_subject_alternative_names"></a> [subject\_alternative\_names](#input\_subject\_alternative\_names) | (Optional) List of additional FQDNs to create the certificate for Traefik and Route53 record | `list(string)` | `null` | no |
 | <a name="input_values"></a> [values](#input\_values) | (Optional) Use the templatefile function to pass through additional configuration for Traefik using the Helm values.yaml. Default: `""` | `string` | `""` | no |
