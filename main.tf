@@ -137,7 +137,7 @@ resource "helm_release" "this" {
   # We are using an ALB so we don't need to create a service of type LoadBalancer
   set {
     name  = "service.type"
-    value = "ClusterIP"
+    value = "NodePort"
   }
   
   # Pass through additional helm values using templatefile
