@@ -4,6 +4,12 @@ variable "alb_name" {
   default = "traefik-alb"
 }
 
+variable "alb_health_check_path" {
+  description = "(Optional) health check path for ALB. If omitted, the default path will be used. Default: `/`"
+  type = string
+  default = "/"
+}
+
 variable "alb_name_prefix" {
   description = "(Optional) Name prefix of the ALB. If omitted, the default name prefix will be used. Default: `traef-`"
   type = string
